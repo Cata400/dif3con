@@ -67,7 +67,7 @@ places365/
 
 For Places365, the default forget/retain split is defined in [`configs/forget_retain_splits.yml`](configs/forget_retain_splits.yml). Class names are read from [`configs/places365_classes.txt`](configs/places365_classes.txt).
 
-All unlearning runs assume that `paths.teacher_checkpoint` points to a pretrained teacher model. If you need to train a base model first, use `train_diffusion.py` with a compatible config.
+All unlearning runs assume that `paths.teacher_checkpoint` points to a pretrained teacher model. If you need to train a base model first, use `train_diffusion.py` with a compatible config. The pretrained Places365 inpainting teacher checkpoint used in our experiments can be found [here](https://ctipub-my.sharepoint.com/:u:/g/personal/catalin_ciocirlan_stud_etti_upb_ro/IQDVrHW79deeR7uJAr58G3aAAa4jyn2lGKwLjlu8EBcmBQ8?e=gfA2hV).
 
 ## Running unlearning
 
