@@ -1,0 +1,92 @@
+paths:
+    train_data: "/path/to/places365/train_256"
+    val_data: null
+    test_data: "/path/to/places365/val_256"
+    checkpoint: "checkpoint"
+    tb_logger: "tb_logger"
+    results: "results"
+    experiment_name: "places365_unlearning_composite_loss"
+    experiments_root: "experiments"
+    resume_state: "" # if not resuming state set to null or ""
+    teacher_checkpoint: "/path/to/teacher/checkpoint.pth"
+    img_save_dir: ""
+
+data:
+    dataset: "Places365"
+    image_size: 256
+    channels: 3
+    data_len: -1
+    mask_mode: "center"
+    val_split: 0.00025 # % of the training data will be used for validation if val_data is null
+
+unlearn:
+    forget_alpha: 0.25
+    max_loss: false
+    learn_noise: false
+    learn_others: false
+
+model:
+    in_channel: 6
+    inner_channel: 64
+    out_channel: 3
+    res_blocks: 2
+    attn_res: [16]
+    dropout: 0.2
+    channel_mults: [1, 2, 4, 8]
+    num_heads: 1
+    num_head_channels: 32
+
+train:
+    batch_size: 12
+    num_workers: 2
+    pin_memory: true
+    drop_last: false
+    n_epochs: 4
+    val_epoch: 1 # validate every n epochs
+    save_checkpoint_epoch: 1 # save checkpoint every n epochs
+    log_iter: 1 # log every n model steps
+    distributed: false
+    cpu: false
+    seed: 42
+    weight_initialization: "kaiming"
+    gain: 0.02
+    num_warmup_steps: null # epochs
+    val_batches_for_img_save: 8
+    fix_decoder: true
+    ema:
+        ema_start: 1
+        ema_iter: 1
+        ema_decay: 0.9999
+    diffusion:
+        schedule: linear
+        linear_start: 0.000001
+        linear_end: 0.01
+        n_timestep: 2000
+
+test:
+    batch_size: 32
+    num_workers: 2
+    pin_memory: true
+    distributed: false
+    drop_last: false
+    num_img_per_class: 10
+    diffusion:
+        schedule: linear
+        linear_start: 0.0001
+        linear_end: 0.09
+        n_timestep: 1000
+    metrics:
+        fid: true
+        fid_dims: 2048
+        is: true
+        is_splits: 10
+
+optim:
+    lr: 0.00001
+    weight_decay: 0.000
+    betas: [0.9, 0.999]
+    amsgrad: false
+    eps: 0.00000001
+
+discord_webhook:
+    url: "" # if you want to receive notifications on discord set the webhook url here, otherwise leave it as an empty string

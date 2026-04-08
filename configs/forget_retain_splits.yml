@@ -1,0 +1,23 @@
+CIFAR10:
+  retain: 
+    start: 0
+    end: 5
+  forget: 
+    start: 5
+    end: 10
+
+Places365:
+  retain:
+    start: 0
+    end: 50
+  forget:
+    start: 50
+    end: 75
+
+TinyImageNet:
+  retain:
+    start: 0
+    end: 100
+  forget:
+    start: 100
+    end: 200
