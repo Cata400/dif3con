@@ -55,9 +55,7 @@ train:
     num_workers: 2
     pin_memory: true
     drop_last: false
-    n_epochs: 1 # number of epochs to t
-discord_webhook:
-    url: "https://discordapp.com/api/webhooks/1401599560236793927/btEqqmMGhqpB5W3wOkx4zfliUM8iz5tGPd9OTOC0N4LAKuqblSeBhC6o2Ii-xa28QUDw"rain at each curriculum step
+    n_epochs: 1 # number of epochs to train at each curriculum step
     val_epoch: 1 # validate every n epochs
     save_checkpoint_epoch: 1 # save checkpoint every n epochs
     log_iter: 1 # log every n model steps
